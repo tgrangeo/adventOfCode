@@ -5,21 +5,19 @@ var str = fs.readFileSync('input.txt', 'utf8');
 var array = str.split('\n')
 var sum = 0
 array.forEach((e) => {
-	var id = Number(e.substring(e.indexOf(' '), e.indexOf(':')))
 	var n = e.substring(e.indexOf(':') + 1, e.length).split((/,|;/))
-	var good = true
+	var red = 0, green = 0, blue = 0
 	n.forEach((i) => {
 		if (i.includes("red"))
-			if (parseInt(i) > 12)
-				good = false
+			if (parseInt(i) > red)
+				red = parseInt(i)
 		if (i.includes("green"))
-			if (parseInt(i) > 13)
-				good = false
+			if (parseInt(i) > green)
+				green = parseInt(i)
 		if (i.includes("blue"))
-			if (parseInt(i) > 14)
-				good = false
+			if (parseInt(i) > blue)
+				blue = parseInt(i)
 	})
-	if (good)
-		sum += id
+	sum += (red * green * blue)
 })
 console.log(sum)
